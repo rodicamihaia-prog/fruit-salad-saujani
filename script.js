@@ -17,10 +17,15 @@ function fetchFruitData(fruit){
     fetch(`https://fruit-api-5v0j.onrender.com/fruits/${fruit}`)
         .then(processResponse)
         .then((data)=> addFruit(data))
-        .catch((error)=> console.log(error))
-    fetch(`https://pixabay.com/api/?key=<api-key>&q=${fruit}+fruit&image_type=photo&category=food`)
+        .catch((error)=>console.log(error))
+    fetch(`https://pixabay.com/api/?key=55568485-07aafd107a3e9d114d7a254b2&q=${fruit}+fruit&image_type=photo&category=food`)
         .then((response) => response.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+            const img = document.createElement('img');
+            img.src = data.hits[0].webformatURL;
+            img.width = 200; 
+            document.body.appendChild(img);
+        })
         .catch((error) => console.log(error))
 }
 
